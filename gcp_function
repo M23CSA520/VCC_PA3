@@ -1,0 +1,7 @@
+gcloud functions deploy scale_up_instance \
+  --runtime python310 \
+  --trigger-http \
+  --allow-unauthenticated \
+  --entry-point scale_up \
+  --region asia-south2 \
+  --source=$(pwd).

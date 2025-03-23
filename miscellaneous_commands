@@ -1,0 +1,27 @@
+gcloud functions logs read scale_up_instance --region asia-south2
+gcloud compute instance-groups managed list
+gcloud compute instances list
+gcloud compute instance-groups managed list --project=m23csa520-vcc-sem3 --filter="zone:asia-south2-a"
+gcloud compute instance-groups managed describe vcc-auto-scale-group --zone=asia-south2-a
+gcloud projects get-iam-policy m23csa520-vcc-sem3
+
+gcloud projects add-iam-policy-binding m23csa520-vcc-sem3 \
+ --member=serviceAccount:692567486078-compute@developer.gserviceaccount.com \
+ --role=roles/cloudbuild.builds.builder
+
+
+gcloud projects add-iam-policy-binding m23csa520-vcc-sem3 \
+  --member=serviceAccount:692567486078-compute@developer.gserviceaccount.com \
+  --role=roles/compute.instanceAdmin.v1
+
+gcloud projects get-iam-policy m23csa520-vcc-sem3 --flatten="bindings[].members" --format="table(bindings.role, bindings.members)"
+
+gcloud projects add-iam-policy-binding m23csa520-vcc-sem3 \
+    --member="serviceAccount:692567486078-compute@developer.gserviceaccount.com" \
+    --role="roles/compute.instanceAdmin"
+	
+gcloud projects add-iam-policy-binding m23csa520-vcc-sem3 \
+    --member="serviceAccount:692567486078-compute@developer.gserviceaccount.com" \
+    --role="roles/compute.instanceGroupManager"
+	
+gcloud functions describe scale_up_instance --region=asia-south2 --format="value(serviceConfig.uri)"

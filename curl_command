@@ -1,0 +1,8 @@
+curl -X POST https://asia-south2-m23csa520-vcc-sem3.cloudfunctions.net/scale_up_instance \
+     -H "Content-Type: application/json" \
+     -d '{
+          "project": "m23csa520-vcc-sem3",
+          "zone": "asia-south2-a",  # Use the correct zone
+          "instance_group": "my-instance-group",  # Use the correct instance group
+          "size": 2
+        }'
